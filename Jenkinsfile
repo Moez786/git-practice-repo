@@ -1,9 +1,16 @@
-pipeline {
+pipeline{
     agent any
     stages {
-        stage (test){
+        stage (test) {
             steps {
-                echo "Hello"
+                echo "hello world"
+            }
+        }
+        stage (build) {
+            agent {label "OPENJDK8-MVN11"}
+            steps {
+                git url: "https://github.com/spring-projects/spring-petclinic.git",
+                branch: "main"
             }
         }
     }
